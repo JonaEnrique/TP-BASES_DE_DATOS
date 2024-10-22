@@ -124,4 +124,6 @@ BEGIN
 	ON Tipo_de_propiedad.Descripcion = tabla_temporal.Tipo_de_propiedad
 	WHERE tabla_temporal.Nombre_propiedad IS NOT NULL AND tabla_temporal.Nombre_usuario IS NOT NULL;
 
+drop table tabla_temporal;
 END;
+--exec p_CargarDataset @archivo = '';--insertar path del excel
