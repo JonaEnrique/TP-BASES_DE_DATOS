@@ -12,16 +12,29 @@ DECLARE @Noches_minimas INT;
 DECLARE @Fecha_reservada DATE
 DECLARE @Id_reserva INT = 1;
 
+-- creo una tabla temporal
+CREATE TABLE #Propiedades_random (Id_propiedad INT)
+	
+-- la lleno con @cantidadReservas ids de propiedad random
+INSERT INTO #Propiedades_random (Id_propiedad)
+SELECT TOP (@cantidadReservas) Id_propiedad
+FROM Propiedad
+ORDER BY NEWID();
+
 -- cantidad de reservas a generar
 WHILE (@cantidadReservas > 0)
 BEGIN
 	
-	-- elige un id de propiedad random
+	-- asigno el primero a la variable
 	SET @Id_propiedad = (
 		SELECT TOP 1 Id_propiedad
-		FROM Propiedad
-		ORDER BY NEWID()
-	)
+		FROM #Propiedades_random
+		ORDER BY Id_propiedad
+	);
+
+	-- borro la que use de la tabla
+	DELETE FROM #Propiedades_random
+	WHERE Id_propiedad = @Id_propiedad;
 
 	-- la fecha de hoy menos 0 a 365 dias
 	SET @Fecha_efectuada = DATEADD(DAY, -FLOOR(RAND() * 365), GETDATE());
@@ -60,4 +73,7 @@ BEGIN
 	SET @cantidadReservas -= 1;
 	SET @Id_reserva += 1;
 
+	
 END;
+-- dropeo la tabla temporal
+DROP TABLE #Propiedades_random;

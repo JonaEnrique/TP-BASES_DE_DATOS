@@ -135,6 +135,7 @@ BEGIN
 		Id_resenia INT NOT NULL IDENTITY,
 		Comentario VARCHAR(1000),
 		Calificacion TINYINT NOT NULL,
+		Fecha_creada DATE NOT NULL,
 		Id_propiedad INT NOT NULL,
 		Id_usuario INT NOT NULL,
 		CONSTRAINT PKResenia
