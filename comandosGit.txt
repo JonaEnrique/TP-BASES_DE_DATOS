@@ -1,0 +1,9 @@
+$ git config --global "yo.axel48@gmail.com"
+
+$ git clone https://github.com/JonaEnrique/TP-BASES_DE_DATOS
+$ git status
+$ git add .
+
+$ git commit -m "nuevo"
+$ git push -u origen main
+$ git pull

@@ -1,4 +1,4 @@
-CREATE DATABASE Airbnb;
+--CREATE DATABASE Airbnb;
 USE Airbnb;
 GO;
 
@@ -25,7 +25,7 @@ BEGIN
 		DROP TABLE IF EXISTS Categoria;
 	END
 
-	-- Categoría(Id_categoría, Nombre)
+	-- Categorï¿½a(Id_categorï¿½a, Nombre)
 	CREATE TABLE Categoria (
 		Id_categoria INT NOT NULL,
 		Nombre VARCHAR(100) NOT NULL,
@@ -33,7 +33,7 @@ BEGIN
 			PRIMARY KEY (Id_categoria)
 	);
 
-	-- Usuario(Id_usuario, Nombre, Id_categoría)
+	-- Usuario(Id_usuario, Nombre, Id_categorï¿½a)
 	CREATE TABLE Usuario (
 		Id_usuario INT NOT NULL,
 		Nombre VARCHAR(100) NOT NULL,
@@ -46,7 +46,7 @@ BEGIN
 		REFERENCES Categoria (Id_categoria)
 	);
 
-	-- Tipo_de_propiedad(Id_tipo_de_propiedad, Descripción)
+	-- Tipo_de_propiedad(Id_tipo_de_propiedad, Descripciï¿½n)
 	CREATE TABLE Tipo_de_propiedad (
 		Id_tipo_de_propiedad INT NOT NULL IDENTITY,
 		Descripcion VARCHAR(100) NOT NULL,
@@ -62,7 +62,7 @@ BEGIN
 			PRIMARY KEY (CP)
 	);
 
-	-- Propiedad(Id_propiedad, Nombre, Descripción, Noches_mínimas, Precio_por_noche, Latitud, Longitud, Id_usuario, Id_tipo_de_propiedad, CP)
+	-- Propiedad(Id_propiedad, Nombre, Descripciï¿½n, Noches_mï¿½nimas, Precio_por_noche, Latitud, Longitud, Id_usuario, Id_tipo_de_propiedad, CP)
 	CREATE TABLE Propiedad (
 		Id_propiedad INT NOT NULL,
 		Nombre VARCHAR(1000) NOT NULL,
@@ -113,7 +113,7 @@ BEGIN
 			REFERENCES Reserva (Id_reserva),
 	);
 
-	-- Servicio(Id_servicio, Descripción)
+	-- Servicio(Id_servicio, Descripciï¿½n)
 	CREATE TABLE Servicio (
 		Id_servicio INT NOT NULL IDENTITY,
 		Descripcion VARCHAR(100) NOT NULL,
@@ -135,7 +135,7 @@ BEGIN
 			REFERENCES Servicio (Id_servicio)
 	);
 
-	-- Reseña(Id_reseña, Comentario, Calificación, Id_propiedad, Id_usuario)
+	-- Reseï¿½a(Id_reseï¿½a, Comentario, Calificaciï¿½n, Id_propiedad, Id_usuario)
 	CREATE TABLE Resenia (
 		Id_resenia INT NOT NULL IDENTITY,
 		Comentario VARCHAR(1000),
@@ -153,7 +153,7 @@ BEGIN
 			REFERENCES Usuario (Id_usuario)
 	);
 
-	-- Habitación(Id_propiedad, Número, Tipo)
+	-- Habitaciï¿½n(Id_propiedad, Nï¿½mero, Tipo)
 	CREATE TABLE Habitacion (
 		Id_propiedad INT NOT NULL,
 		Numero INT NOT NULL,
@@ -165,7 +165,7 @@ BEGIN
 			REFERENCES Propiedad (Id_propiedad)
 	);
 
-	-- Dormitorio(Id_propiedad, Número)
+	-- Dormitorio(Id_propiedad, Nï¿½mero)
 	CREATE TABLE Dormitorio (
 		Id_propiedad INT NOT NULL,
 		Numero INT NOT NULL,
@@ -176,7 +176,7 @@ BEGIN
 			REFERENCES Habitacion (Id_propiedad, Numero)
 	);
 
-	-- Baño(Id_propiedad, Número)
+	-- Baï¿½o(Id_propiedad, Nï¿½mero)
 	CREATE TABLE Banio (
 		Id_propiedad INT NOT NULL,
 		Numero INT NOT NULL,
@@ -187,7 +187,7 @@ BEGIN
 			REFERENCES Habitacion (Id_propiedad, Numero)
 	);
 
-	-- Tipo_de_cama(Id_tipo_de_cama, Descripción)
+	-- Tipo_de_cama(Id_tipo_de_cama, Descripciï¿½n)
 	CREATE TABLE Tipo_de_cama (
 		Id_tipo_de_cama INT NOT NULL IDENTITY,
 		Descripcion VARCHAR(100) NOT NULL,
@@ -195,7 +195,7 @@ BEGIN
 			PRIMARY KEY (Id_tipo_de_cama)
 	);
 
-	-- Cama(Id_propiedad, Número, Número_cama, Id_tipo_de_cama)
+	-- Cama(Id_propiedad, Nï¿½mero, Nï¿½mero_cama, Id_tipo_de_cama)
 	CREATE TABLE Cama (
 		Id_propiedad INT NOT NULL,
 		Numero INT NOT NULL,
