@@ -1,6 +1,11 @@
+CREATE DATABASE Airbnb;
+USE Airbnb;
+GO;
+
 CREATE PROCEDURE p_CrearDB (@borrar_si_existe bit)
 AS
 BEGIN
+
 	IF (@borrar_si_existe = 1)
 	BEGIN
 		DROP TABLE IF EXISTS Cama;
