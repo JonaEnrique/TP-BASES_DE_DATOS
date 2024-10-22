@@ -23,3 +23,4 @@ BEGIN
 	SET @cantidadReservas -= 1;
 
 END;
+-- incompleto
