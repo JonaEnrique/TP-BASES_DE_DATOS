@@ -1,6 +1,5 @@
 
 
-
 CREATE FUNCTION f_funcion2 (@contrasenia VARCHAR(20))
 RETURNS BIT
 AS
