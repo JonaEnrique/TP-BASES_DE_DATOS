@@ -188,6 +188,7 @@ BEGIN
 	CREATE TABLE Tipo_de_cama (
 		Id_tipo_de_cama INT NOT NULL IDENTITY,
 		Descripcion VARCHAR(100) NOT NULL,
+		Espacio INT NOT NULL,
 		CONSTRAINT PKTipo_de_cama
 			PRIMARY KEY (Id_tipo_de_cama)
 	);
