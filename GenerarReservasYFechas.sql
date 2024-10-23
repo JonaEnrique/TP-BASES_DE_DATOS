@@ -78,3 +78,10 @@ BEGIN
 END;
 -- dropeo la tabla temporal
 DROP TABLE #Propiedades_random;
+
+--cantidad de reservas por propiedad
+
+SELECT Id_propiedad, COUNT(*) AS CantidadReservas
+FROM Reserva
+GROUP BY Id_propiedad;
+

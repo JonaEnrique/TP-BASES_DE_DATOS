@@ -208,3 +208,5 @@ BEGIN
 END;
 
 exec p_CrearDB @borrar_si_existe=1;
+
+DROP TABLE #Propiedades_random
