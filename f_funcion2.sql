@@ -4,7 +4,8 @@ CREATE FUNCTION f_funcion2 (@contrasenia VARCHAR(20))
 RETURNS BIT
 AS
 BEGIN
-
+	IF (@contrasenia is null)
+		RETURN 0;
 	-- minimo 8 caracteres
 	IF (LEN(@contrasenia) < 8)
 		RETURN 0;
@@ -28,3 +29,4 @@ BEGIN
 	RETURN 1;
 
 END;
+

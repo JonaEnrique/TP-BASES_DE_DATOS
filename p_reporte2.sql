@@ -1,6 +1,8 @@
 -- Este procedimiento muestra las propiedades que tienen por lo menos todos
 -- los servicios que se le pasan en una tabla de tipo LISTA_SERVICIO (Id_servicio)
 
+
+
 CREATE OR ALTER PROCEDURE p_reporte4 (@lista_servicio LISTA_SERVICIO READONLY)
 AS
 BEGIN
@@ -91,14 +93,16 @@ BEGIN
 		FROM #Prop_todos_servicios
 		INNER JOIN Propiedad
 		ON Propiedad.Id_propiedad = #Prop_todos_servicios.Id_propiedad
-		INNER JOIN Tiene_servicio
-		ON #Prop_todos_servicios.Id_propiedad = Tiene_servicio.Id_propiedad
+		--INNER JOIN Tiene_servicio
+--		ON #Prop_todos_servicios.Id_propiedad = Tiene_servicio.Id_propiedad
 
 	END;
 
 END;
 GO
 
+--ejecutar 1 vez
+CREATE TYPE LISTA_SERVICIO AS TABLE (Id_servicio INT)
 
 -- aca lo ejecuto para probarlo
 -- hay que declarar una variable tabla creada por usuario que supongo que meteremos en alguno de los scripts
