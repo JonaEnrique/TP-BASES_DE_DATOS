@@ -62,7 +62,7 @@ BEGIN
 	-- si el tipo es de hotel o compartida
 	IF (@tipoDePropiedadActual = 1 OR @tipoDePropiedadActual = 2)
 	BEGIN
-		-- tiene 2 habitaciones, un dormitorio y un baño siempre
+		-- tiene 2 habitaciones, un dormitorio y un baï¿½o siempre
 		SET @cantidadHabitaciones = 2;
 		SET @cantidadDormitorios = 1;
 		SET @cantidadBanios = 1;
@@ -70,7 +70,7 @@ BEGIN
 	-- si es privada 
 	ELSE IF (@tipoDePropiedadActual = 3)
 	BEGIN
-		-- tiene solamente baño
+		-- tiene solamente baï¿½o
 		SET @cantidadDormitorios = 0;
 		SET @cantidadBanios = 1;
 	END

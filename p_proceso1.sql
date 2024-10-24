@@ -63,7 +63,7 @@ BEGIN
 END
 
 --EXEC p_proceso1 'A', 101, 'Nicolas', 'P@55word', NULL
---EXEC p_proceso1 'B', 101
 --EXEC p_proceso1 'M', 101, 'Ezequiel', 'P4ssw@rd', 1
+--EXEC p_proceso1 'B', 101
 
 --SELECT * FROM Usuario WHERE Id_usuario = 101

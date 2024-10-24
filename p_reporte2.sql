@@ -89,12 +89,12 @@ BEGIN
 		-- cuando termina el while la tabla prop_todos_servicios tiene
 		-- solo las propiedades que tienen por lo menos TODOS los servicios que pase por parametro
 		-- lo muestro junto con los servicios que tiene para comprobar que es verdad, pero podriamos sacar el ultimo join
-		SELECT #Prop_todos_servicios.Id_propiedad, Propiedad.Nombre, Tiene_servicio.Id_servicio
+		SELECT #Prop_todos_servicios.Id_propiedad, Propiedad.Nombre--, Tiene_servicio.Id_servicio
 		FROM #Prop_todos_servicios
 		INNER JOIN Propiedad
 		ON Propiedad.Id_propiedad = #Prop_todos_servicios.Id_propiedad
 		--INNER JOIN Tiene_servicio
---		ON #Prop_todos_servicios.Id_propiedad = Tiene_servicio.Id_propiedad
+		--ON #Prop_todos_servicios.Id_propiedad = Tiene_servicio.Id_propiedad
 
 	END;
 

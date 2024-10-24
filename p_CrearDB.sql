@@ -25,7 +25,7 @@ BEGIN
 	-- Categor�a(Id_categor�a, Nombre)
 	CREATE TABLE Categoria (
 		Id_categoria INT NOT NULL,
-		Nombre VARCHAR(100) NOT NULL,
+		Nombre NVARCHAR(100) NOT NULL,
 		CONSTRAINT PKCategoria
 			PRIMARY KEY (Id_categoria)
 	);
@@ -33,20 +33,24 @@ BEGIN
 	-- Usuario(Id_usuario, Nombre, Id_categor�a)
 	CREATE TABLE Usuario (
 		Id_usuario INT NOT NULL,
-		Nombre VARCHAR(100) NOT NULL,
-		Contrasenia VARCHAR(20) NOT NULL,
+		Nombre NVARCHAR(100) NOT NULL,
+		Contrasenia NVARCHAR(20) NOT NULL,
 		Id_categoria INT,
+		Id_usuario_referente INT,
 		CONSTRAINT PKUsuario
 			PRIMARY KEY (Id_usuario),
 		CONSTRAINT FKCategoria_de_anfitrion
 		FOREIGN KEY (Id_categoria)
-		REFERENCES Categoria (Id_categoria)
+		REFERENCES Categoria (Id_categoria),
+		CONSTRAINT FKUsario
+		FOREIGN KEY (Id_usuario_referente)
+		REFERENCES Usuario (Id_usuario)
 	);
 
 	-- Tipo_de_propiedad(Id_tipo_de_propiedad, Descripci�n)
 	CREATE TABLE Tipo_de_propiedad (
 		Id_tipo_de_propiedad INT NOT NULL IDENTITY,
-		Descripcion VARCHAR(100) NOT NULL,
+		Descripcion NVARCHAR(100) NOT NULL,
 		CONSTRAINT PKTipo_de_propiedad
 			PRIMARY KEY (Id_tipo_de_propiedad)
 	)
@@ -54,7 +58,7 @@ BEGIN
 	-- Localidad(CP, Nombre)
 	CREATE TABLE Localidad (
 		CP INT NOT NULL IDENTITY,
-		Nombre VARCHAR(100) NOT NULL,
+		Nombre NVARCHAR(100) NOT NULL,
 		CONSTRAINT PKLocalidad
 			PRIMARY KEY (CP)
 	);
@@ -62,7 +66,7 @@ BEGIN
 	-- Propiedad(Id_propiedad, Nombre, Descripci�n, Noches_m�nimas, Precio_por_noche, Latitud, Longitud, Id_usuario, Id_tipo_de_propiedad, CP)
 	CREATE TABLE Propiedad (
 		Id_propiedad INT NOT NULL,
-		Nombre VARCHAR(1000) NOT NULL,
+		Nombre NVARCHAR(1000) NOT NULL,
 		Noches_minimas INT NOT NULL,
 		Precio_por_noche FLOAT NOT NULL,
 		Latitud FLOAT NOT NULL,
@@ -113,7 +117,7 @@ BEGIN
 	-- Servicio(Id_servicio, Descripci�n)
 	CREATE TABLE Servicio (
 		Id_servicio INT NOT NULL IDENTITY,
-		Descripcion VARCHAR(100) NOT NULL,
+		Descripcion NVARCHAR(100) NOT NULL,
 		CONSTRAINT PKServicio
 			PRIMARY KEY (Id_servicio)
 	);
@@ -135,7 +139,7 @@ BEGIN
 	-- Rese�a(Id_rese�a, Comentario, Calificaci�n, Id_propiedad, Id_usuario)
 	CREATE TABLE Resenia (
 		Id_resenia INT NOT NULL IDENTITY,
-		Comentario VARCHAR(1000),
+		Comentario NVARCHAR(1000),
 		Calificacion TINYINT NOT NULL,
 		Fecha_creada DATE NOT NULL,
 		Id_propiedad INT NOT NULL,
@@ -154,7 +158,7 @@ BEGIN
 	CREATE TABLE Habitacion (
 		Id_propiedad INT NOT NULL,
 		Numero INT NOT NULL,
-		Tipo VARCHAR(100),
+		Tipo NVARCHAR(100),
 		CONSTRAINT PKHabitacion
 			PRIMARY KEY (Id_propiedad, Numero),
 		CONSTRAINT FKPropiedad_duenia
@@ -187,7 +191,7 @@ BEGIN
 	-- Tipo_de_cama(Id_tipo_de_cama, Descripci�n)
 	CREATE TABLE Tipo_de_cama (
 		Id_tipo_de_cama INT NOT NULL IDENTITY,
-		Descripcion VARCHAR(100) NOT NULL,
+		Descripcion NVARCHAR(100) NOT NULL,
 		Espacio INT NOT NULL,
 		CONSTRAINT PKTipo_de_cama
 			PRIMARY KEY (Id_tipo_de_cama)
@@ -208,7 +212,7 @@ BEGIN
 
 END;
 
-exec p_CrearDB @borrar_si_existe=1;
+--exec p_CrearDB @borrar_si_existe=1;
 
 /*
 Create Database Airbnb

@@ -1,4 +1,4 @@
-CREATE VIEW v_vista1
+CREATE VIEW v_vista1  --RANKING ?
 AS
 WITH Fechas_por_reserva AS (
 	SELECT Id_reserva, COUNT(Fecha) AS Cantidad_Fechas

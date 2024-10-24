@@ -13,7 +13,7 @@ Propiedad_dormitorio_banio AS (
 		SELECT B.Id_propiedad, COUNT(B.Numero) AS Banios
 		FROM Banio B
 		GROUP BY B.Id_propiedad
-	) AS Propiedad_banio 
+	) AS Propiedad_banio
 	ON D.Id_propiedad = Propiedad_banio.Id_propiedad
 	GROUP BY D.Id_propiedad, Propiedad_banio.Banios
 ),
@@ -22,6 +22,8 @@ Propiedad_cama AS (
 	FROM Cama C
 	GROUP BY Id_propiedad
 )
+
+
 SELECT P.Nombre, PDB.Banios, PDB.Dormitorios, PC.Camas, PE.Espacio
 FROM Propiedad P
 INNER JOIN Propiedad_espacio PE
