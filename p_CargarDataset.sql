@@ -1,4 +1,4 @@
-CREATE PROCEDURE p_CargarDataset (@archivo VARCHAR(100))
+CREATE PROCEDURE p_CargarDataset (@archivo NVARCHAR(100))
 AS
 BEGIN
 	
@@ -8,13 +8,13 @@ BEGIN
 	-- tabla como la de kaggle
 	CREATE TABLE tabla_temporal (
 		Id_propiedad INT,
-		Nombre_propiedad VARCHAR(1000),
+		Nombre_propiedad NVARCHAR(1000),
 		Id_usuario INT,
-		Nombre_usuario VARCHAR(100),
-		Localidad VARCHAR(100),
+		Nombre_usuario NVARCHAR(100),
+		Localidad NVARCHAR(100),
 		Latitud FLOAT,
 		Longitud FLOAT,
-		Tipo_de_propiedad VARCHAR(100),
+		Tipo_de_propiedad NVARCHAR(100),
 		Precio_por_noche FLOAT,
 		Noches_minimas INT,
 		Numero_de_reviews INT,
@@ -26,7 +26,7 @@ BEGIN
 
 
 	-- esto esta hecho de esta forma porque BULK INSERT no admite variables en el FROM, asi que hay que hacer esto raro
-	DECLARE @bulk VARCHAR(MAX);
+	DECLARE @bulk NVARCHAR(MAX);
 	-- declaro una variable con el query que no hay que tocar mucho porque se rompe facil
 	SET @bulk = 'BULK INSERT tabla_temporal
 	FROM ''' +  @archivo + '''
@@ -58,7 +58,7 @@ BEGIN
 	-- Creo una tabla temporal con id, nombre y cantidad de reviews
 	CREATE TABLE #Usuario_reviews (
 		Id_usuario INT,
-		Nombre_usuario VARCHAR(100),
+		Nombre_usuario NVARCHAR(100),
 		Reviews_totales INT
 	);
 

@@ -1,7 +1,7 @@
 DECLARE @cantidad INT = 100;
 
-DECLARE @Nombre VARCHAR(100) = 'Nombre';
-DECLARE @Contrasenia VARCHAR(20) = 'P@ssW0rd'
+DECLARE @Nombre NVARCHAR(100) = 'Nombre';
+DECLARE @Contrasenia NVARCHAR(20) = 'P@ssW0rd'
 
 WHILE (@cantidad > 0)
 BEGIN

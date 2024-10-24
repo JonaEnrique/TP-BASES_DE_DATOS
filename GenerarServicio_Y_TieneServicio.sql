@@ -1,7 +1,7 @@
---SERVICIO (ID_SERVICIO PK (INT), DESCRIPCION (VARCHAR))
+--SERVICIO (ID_SERVICIO PK (INT), DESCRIPCION (NVARCHAR))
 --TIENE_SERVICIO (ID_SERVICIO PK+FK (INT) , ID_PROPIEDAD PK+FK (INT))
 DECLARE @cantidad INT = 1;
-DECLARE @descripcionServicio VARCHAR(100) = 'Servicio ';
+DECLARE @descripcionServicio NVARCHAR(100) = 'Servicio ';
 
 IF OBJECT_ID('tempdb..#Propiedades_random') IS NOT NULL
     DROP TABLE #Propiedades_random;

@@ -1,4 +1,4 @@
-CREATE OR ALTER FUNCTION f_funcion2 (@contrasenia VARCHAR(20))
+CREATE OR ALTER FUNCTION f_funcion2 (@contrasenia NVARCHAR(20))
 RETURNS BIT
 AS
 BEGIN
