@@ -10,18 +10,18 @@ BEGIN
 		-- esta tabla guarda algunos datos de las propiedades que se toquen
 		CREATE TABLE Auditoria (
 			Id_auditoria INT NOT NULL IDENTITY,
-			Nombre_usuario VARCHAR(100) NOT NULL,
-			Evento VARCHAR(20) NOT NULL,
+			Nombre_usuario NVARCHAR(100) NOT NULL,
+			Evento NVARCHAR(20) NOT NULL,
 			Fecha_evento DATETIME NOT NULL,
 			Id_propiedad INT,
-			Nombre_propiedad VARCHAR(1000),
+			Nombre_propiedad NVARCHAR(1000),
 			Noches_minimas INT,
 			Precio_por_noche FLOAT,
 			Latitud FLOAT,
 			Longitud FLOAT,
 			Id_usuario INT,
-			Tipo_de_propiedad VARCHAR(100),
-			Localidad VARCHAR(100),
+			Tipo_de_propiedad NVARCHAR(100),
+			Localidad NVARCHAR(100),
 			CONSTRAINT PKAuditoria
 				PRIMARY KEY (Id_auditoria)
 		);

@@ -1,4 +1,5 @@
 --CREATE DATABASE Airbnb;
+--DROP PROCEDURE p_CrearDB
 CREATE PROCEDURE p_CrearDB (@borrar_si_existe bit)
 AS
 BEGIN

@@ -1,8 +1,8 @@
 CREATE OR ALTER PROCEDURE p_proceso1
 	@Accion CHAR,
 	@Id_usuario INT,
-	@Nombre VARCHAR(100) = NULL,
-	@Contrasenia VARCHAR(20) = NULL,
+	@Nombre NVARCHAR(100) = NULL,
+	@Contrasenia NVARCHAR(20) = NULL,
 	@Categoria INT = NULL
 AS
 BEGIN
@@ -26,7 +26,7 @@ BEGIN
 				PRINT ('contrasenia invalida')
 		END
 		ELSE
-			PRINT ('El usuario con ID ' + CAST(@Id_usuario AS VARCHAR(100)) + ' ya existe')
+			PRINT ('El usuario con ID ' + CAST(@Id_usuario AS NVARCHAR(100)) + ' ya existe')
 	END
 	ELSE IF (@Accion = 'B')
 	BEGIN
@@ -35,10 +35,10 @@ BEGIN
 			DELETE FROM Usuario
 			WHERE Id_usuario = @Id_usuario
 
-			PRINT ('El usuario con id ' + CAST(@Id_usuario AS VARCHAR(100)) + ' fue eliminado')
+			PRINT ('El usuario con id ' + CAST(@Id_usuario AS NVARCHAR(100)) + ' fue eliminado')
 		END
 		ELSE
-			PRINT ('El usuario con id ' + CAST(@Id_usuario AS VARCHAR(100)) + ' no existe')
+			PRINT ('El usuario con id ' + CAST(@Id_usuario AS NVARCHAR(100)) + ' no existe')
 	END
 	ELSE IF (@Accion = 'M')
 	BEGIN
@@ -55,10 +55,10 @@ BEGIN
 					Id_categoria = @Categoria
 				WHERE Id_usuario = @Id_usuario
 
-			PRINT ('El usuario con id ' + CAST(@Id_usuario AS VARCHAR(100)) + ' fue modificado')
+			PRINT ('El usuario con id ' + CAST(@Id_usuario AS NVARCHAR(100)) + ' fue modificado')
 		END
 		ELSE
-			PRINT ('El usuario con id ' + CAST(@Id_usuario AS VARCHAR(100)) + ' no existe')
+			PRINT ('El usuario con id ' + CAST(@Id_usuario AS NVARCHAR(100)) + ' no existe')
 	END
 END
 

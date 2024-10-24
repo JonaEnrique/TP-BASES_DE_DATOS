@@ -1,3 +1,4 @@
+--DROP PROCEDURE p_CargarDataset
 CREATE PROCEDURE p_CargarDataset (@archivo NVARCHAR(100))
 AS
 BEGIN
