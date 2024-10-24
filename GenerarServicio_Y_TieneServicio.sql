@@ -8,6 +8,14 @@ IF OBJECT_ID('tempdb..#Propiedades_random') IS NOT NULL
 IF OBJECT_ID('tempdb..#Servicios_random') IS NOT NULL
     DROP TABLE #Servicios_random;
 
+IF EXISTS (SELECT 1 FROM Tiene_servicio)
+    DELETE FROM Tiene_servicio;
+
+IF EXISTS (SELECT 1 FROM Servicio)
+    DELETE FROM Servicio;
+
+
+
 WHILE (@cantidad < 41)
 BEGIN
 	

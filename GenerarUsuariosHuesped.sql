@@ -1,6 +1,6 @@
 DECLARE @cantidad INT = 100;
 
-DECLARE @Nombre NVARCHAR(100) = 'Nombre';
+DECLARE @Nombre NVARCHAR(100) = 'noMbRe uSr';
 DECLARE @Contrasenia NVARCHAR(20) = 'P@ssW0rd'
 
 DECLARE @cantidadUsuarios INT = 50;
@@ -43,8 +43,15 @@ BEGIN
 	)
 
 	SET @cantidad -= 1;
-
 END
+	DROP TABLE #Usuarios_random
 
-select *
-from Usuario
+--delete
+--from Usuario
+--where Id_usuario <=100
+
+--delete
+--from Reserva
+
+--delete
+--from Fecha_reservada
