@@ -46,5 +46,5 @@ BEGIN
 
 END
 
-select Id_usuario_referente
+select *
 from Usuario
