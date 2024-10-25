@@ -16,7 +16,7 @@ BEGIN
     EXEC p_reporte1;
 
     -- Ahora filtra las propiedades en función de las reservas y el espacio necesario
-    SELECT R.Nombre, R.Banios, R.Dormitorios, R.Camas, R.Espacio, R.Id_propiedad
+    SELECT R.Nombre, R.Espacio, R.Id_propiedad
     FROM #Reporte R
     WHERE R.Espacio >= @lugares
     AND R.Id_propiedad NOT IN (
@@ -30,7 +30,10 @@ BEGIN
     DROP TABLE #Reporte;
 END;
 
-exec p_reporte3(
+exec p_reporte3 '2024-10-01', '2024-10-05', 7;
 
 select *
 from Reserva
+
+select *
+from Fecha_reservada

@@ -1,3 +1,5 @@
+--Genera un reporte de que caracteristicas tiene cada propiedad
+--DROP PROCEDURE p_reporte1
 CREATE PROCEDURE p_reporte1
 as 
 BEGIN
@@ -26,7 +28,7 @@ BEGIN
 		GROUP BY Id_propiedad
 	)
 
-	SELECT P.Nombre, PDB.Banios, PDB.Dormitorios, PC.Camas, PE.Espacio
+	SELECT P.Nombre, PDB.Banios, PDB.Dormitorios, PC.Camas, PE.Espacio, P.Id_propiedad
 	FROM Propiedad P
 	INNER JOIN Propiedad_espacio PE
 	ON P.Id_propiedad = PE.Id_propiedad
@@ -35,3 +37,5 @@ BEGIN
 	INNER JOIN Propiedad_cama PC
 	ON PC.Id_propiedad = P.Id_propiedad
 END
+
+exec p_reporte1

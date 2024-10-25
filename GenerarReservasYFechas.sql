@@ -98,7 +98,7 @@ DROP TABLE #Propiedades_random;
 
 --cantidad de reservas por propiedad
 
-<<<<<<< HEAD
+
 --SELECT Id_propiedad, COUNT(*) AS CantidadReservas
 --FROM Reserva
 --GROUP BY Id_propiedad;
@@ -110,7 +110,7 @@ DROP TABLE #Propiedades_random;
 --DELETE FROM Fecha_reservada
 --DELETE FROM Reserva_fecha_efectuada
 --DELETE FROM Reserva
-=======
+
 SELECT Id_propiedad, COUNT(*) AS CantidadReservas
 FROM Reserva
 GROUP BY Id_propiedad;
@@ -118,4 +118,4 @@ GROUP BY Id_propiedad;
 delete from Fecha_reservada
 delete from Reserva
 */ 
->>>>>>> 6a146d0738850639c0fd71cdb162d30857d7f2f8
+

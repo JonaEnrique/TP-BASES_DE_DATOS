@@ -127,4 +127,4 @@ BEGIN
 
 drop table tabla_temporal;
 END;
---exec p_CargarDataset @archivo = '';--insertar path del excel
+--exec p_CargarDataset @archivo = 'C:\Users\Codyboor\Desktop\Base de Datos 2024\TP Base de datos\TP-BASES_DE_DATOS\Datos_Kaggle.csv';--insertar path del excel
