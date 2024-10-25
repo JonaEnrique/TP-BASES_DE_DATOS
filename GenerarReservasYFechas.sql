@@ -40,15 +40,18 @@ BEGIN
 	-- la fecha de hoy menos 0 a 365 dias
 	SET @Fecha_efectuada = DATEADD(DAY, -FLOOR(RAND() * 365), GETDATE());
 
-	-- entre 1 y 3 reservas en la misma propiedad
-	SET @cantidadReservas = 1 + FLOOR(RAND() * 2)
+	-- entre 1 y 5 reservas en la misma propiedad
+	SET @cantidadReservas = 1 + FLOOR(RAND() * 4)
 	
 	-- mientras haya reservas por hacer
 	WHILE (@cantidadReservas > 0)
 	BEGIN
 		-- inserta una reserva con un huesped random
-		INSERT INTO Reserva (Id_propiedad, Id_usuario, Fecha_efectuada)
-		VALUES (@Id_propiedad, 1 + FLOOR(RAND() * 99), @Fecha_efectuada);
+		INSERT INTO Reserva (Id_propiedad, Id_usuario)
+		VALUES (@Id_propiedad, 1 + FLOOR(RAND() * 99));
+
+		INSERT INTO Reserva_fecha_efectuada (Id_reserva, Fecha_efectuada)
+		VALUES (@Id_reserva, @Fecha_efectuada)
 
 		-- saca las noches minimas de la propiedad reservada
 		SET @Noches_minimas = (
@@ -79,12 +82,13 @@ BEGIN
 		-- setea la fecha efectuada a la ultima fecha reservada para que no se pisen las reservas
 		SET @Fecha_efectuada = @Fecha_reservada
 		SET @CantidadReservas -= 1;
+		
+		-- aumenta para que no se defase con el identity de reserva
+		SET @Id_reserva += 1;
 
 	END;
 
-	-- disminuye y aumenta para el while y para el id de reserva
 	SET @cantidadPropiedades -= 1;
-	SET @Id_reserva += 1;
 
 END;
 -- dropeo la tabla temporal
@@ -92,7 +96,14 @@ DROP TABLE #Propiedades_random;
 
 --cantidad de reservas por propiedad
 
-SELECT Id_propiedad, COUNT(*) AS CantidadReservas
-FROM Reserva
-GROUP BY Id_propiedad;
+--SELECT Id_propiedad, COUNT(*) AS CantidadReservas
+--FROM Reserva
+--GROUP BY Id_propiedad;
 
+--SELECT * FROM Reserva
+
+--SELECT * FROM Fecha_reservada
+
+--DELETE FROM Fecha_reservada
+--DELETE FROM Reserva_fecha_efectuada
+--DELETE FROM Reserva

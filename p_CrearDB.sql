@@ -88,12 +88,11 @@ BEGIN
 			REFERENCES Localidad (CP)
 	);
 
-	-- Reserva(Id_propiedad, Id_usuario)
+	-- Reserva(Id_reserva, Id_propiedad, Id_usuario)
 	CREATE TABLE Reserva (
 		Id_reserva INT NOT NULL IDENTITY,
 		Id_propiedad INT NOT NULL,
 		Id_usuario INT NOT NULL,
-		Fecha_efectuada DATE NOT NULL,
 		CONSTRAINT PKReservado_por
 			PRIMARY KEY (Id_reserva),
 		CONSTRAINT FKPropiedad_reservada
@@ -103,6 +102,14 @@ BEGIN
 			FOREIGN KEY (Id_usuario)
 			REFERENCES Usuario (Id_usuario)
 	);
+
+	-- Reserva_fecha_efectuada(Id_reserva, Fecha_efectuada)
+	CREATE TABLE Reserva_fecha_efectuada (
+		Id_reserva INT NOT NULL,
+		Fecha_efectuada DATE NOT NULL,
+		CONSTRAINT PKReserva
+			PRIMARY KEY (Id_reserva)
+	)
 
 	-- Fecha_reservada(Id_propiedad, Id_usuario, fecha)
 	CREATE TABLE Fecha_reservada (
