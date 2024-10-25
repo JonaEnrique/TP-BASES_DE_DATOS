@@ -37,3 +37,6 @@ from Reserva
 
 select *
 from Fecha_reservada
+
+Select Id_propiedad
+from Propiedad
