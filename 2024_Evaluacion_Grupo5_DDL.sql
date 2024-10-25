@@ -246,7 +246,8 @@ BEGIN
 
 END;
 
---exec p_CrearDB @borrar_si_existe=1;
+GO
+exec p_CrearDB @borrar_si_existe=1;
 
 /*
 9. p_LimpiarDatos(): Desarrollar un procedimiento almacenado que permita limpiar todos los
@@ -275,7 +276,7 @@ BEGIN
 	DELETE FROM Categoria;
 
 END;
-
+--exec p_LimpiarDatos
 /*
 10. p_CagarDataset(archivo): Desarrollar un procedimiento almacenado que permita cargar el
 dataset propuesto en cada caso. Se podrá contemplar la carga en una tabla temporal para
@@ -285,7 +286,7 @@ corregirlo o suprimirlo. La carga se debe realizar desde el path del archivo env
 parámetro.
 */
 GO
-CREATE PROCEDURE p_CargarDataset (@archivo NVARCHAR(100))
+CREATE OR ALTER PROCEDURE p_CargarDataset (@archivo NVARCHAR(100))
 AS
 BEGIN
 	
@@ -414,7 +415,9 @@ BEGIN
 drop table tabla_temporal;
 END;
 
---exec p_CargarDataset @archivo = '';--insertar path del excel Datos_Kaggle.csv
+GO
+exec p_CargarDataset @archivo = 'C:\Users\Codyboor\Desktop\Base de Datos 2024\TP Base de datos\TP-BASES_DE_DATOS\Datos_Kaggle.csv';--insertar path del excel Datos_Kaggle.csv
+--drop table tabla_temporal;
 
 /*
 11. p_CargaAleatoria(): Desarrollar un procedimiento almacenado que permita cargar el juego
@@ -422,7 +425,7 @@ de datos que se utilizarán para la generación de filas en cada una de las enti
 diseñadas en el modelo. Se deben controlar los errores de carga.
 */
 -- GENERA USUARIOS QUE NO SON DUEÑOS DE PROPIEDADES
-
+GO
 DECLARE @cantidad INT = 100;
 
 DECLARE @Nombre NVARCHAR(100) = 'noMbRe uSr';

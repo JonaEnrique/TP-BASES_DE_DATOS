@@ -5,7 +5,7 @@ las acciones realizadas, permitiendo conocer la acción, el momento de la acció
 que lo realizó, el valor cambiado y todo lo que considere relevante
 */
 GO
-CREATE TRIGGER tg_auditar
+CREATE OR ALTER TRIGGER tg_auditar
 ON Propiedad
 AFTER INSERT, UPDATE, DELETE
 AS
@@ -268,7 +268,7 @@ subconsultas, etc.
 requerimiento oportuno al modelo
 */
 GO
-CREATE VIEW v_vista1  --RANKING 
+CREATE OR ALTER VIEW v_vista1  --RANKING 
 AS
 WITH Fechas_por_reserva AS (
 	SELECT Id_reserva, COUNT(Fecha) AS Cantidad_Fechas
@@ -308,11 +308,11 @@ WITH ReferentesCTE AS (
 )
 
 -- Contamos el numero de ancestros para cada usuario
-/*
+
 SELECT Id_usuario, MAX(Nivel) AS CantidadAncestros
 FROM ReferentesCTE
 GROUP BY Id_usuario;
-*/
+
 
 GO
 CREATE OR ALTER VIEW Cantidad_Resenias_UltimoAnio AS
@@ -403,12 +403,13 @@ exec p_reporte1
 
 -- Este procedimiento muestra las propiedades que tienen por lo menos todos
 -- los servicios que se le pasan en una tabla de tipo LISTA_SERVICIO (Id_servicio)
-
+GO
 IF NOT EXISTS (SELECT * FROM sys.types WHERE is_table_type = 1 AND name = 'LISTA_SERVICIO')
 BEGIN
     CREATE TYPE LISTA_SERVICIO AS TABLE (Id_servicio INT);
 END;
 
+GO
 CREATE OR ALTER PROCEDURE p_reporte2 (@lista_servicio LISTA_SERVICIO READONLY)
 AS
 BEGIN
@@ -711,7 +712,7 @@ diferentes características, tales como que el usuario no exista/exista, que cum
 condiciones de contraseñas, que haya completado todos los datos mínimos necesarios, las
 relaciones que se afectarían, etc.
 */
-
+GO
 CREATE OR ALTER PROCEDURE p_proceso1
 	@Accion CHAR,
 	@Id_usuario INT,
@@ -728,7 +729,7 @@ BEGIN
 			BEGIN
 				IF (@Categoria IS NULL)
 				BEGIN
-					INSERT INTO Usuario
+					INSERT INTO Usuario (Id_usuario, Nombre, Contrasenia, Id_categoria)
 					VALUES (@Id_usuario, @Nombre, @Contrasenia, @Categoria)
 					
 					PRINT ('Usuario nuevo agregado')
