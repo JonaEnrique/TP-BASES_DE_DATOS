@@ -2,6 +2,7 @@
 -- si lo quieren correr de nuevo hagan DELETE de Fecha_reservada y Reserva
 -- esto es para resetear el identity de Reserva
 -- DBCC CHECKIDENT (Reserva, RESEED, 0)
+
 delete from Fecha_reservada
 delete from Reserva
 

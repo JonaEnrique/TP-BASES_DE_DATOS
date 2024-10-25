@@ -35,13 +35,6 @@ BEGIN
     DROP TABLE #Reporte;
 END;
 
-exec p_reporte3 '2024-10-01', '2024-10-05', -2;
 
-select *
-from Reserva
-
-select *
-from Fecha_reservada
-
-Select Id_propiedad
-from Propiedad
+GO
+exec p_reporte3 '2024-10-01', '2024-10-05', 5;

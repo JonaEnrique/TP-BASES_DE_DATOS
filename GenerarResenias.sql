@@ -1,7 +1,7 @@
 CREATE TABLE #Propiedades_random (Id_propiedad INT);
 CREATE TABLE #Usuarios_random (Id_usuario INT);
 
-DECLARE @cantidadResenias INT = 20;
+DECLARE @cantidadResenias INT = 5000;
 DECLARE @comentario NVARCHAR(1000);
 DECLARE @calificacion TINYINT;
 DECLARE @fechaCreada DATE;
@@ -21,7 +21,7 @@ ORDER BY NEWID();
 
 GO
 
-DECLARE @cantidadResenias INT = 20;
+DECLARE @cantidadResenias INT = 5000;
 DECLARE @comentario NVARCHAR(1000);
 DECLARE @calificacion TINYINT;
 DECLARE @fechaCreada DATE;
