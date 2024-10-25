@@ -3,29 +3,6 @@ ON Propiedad
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
-	
-	-- crea la tabla de auditoria si no existe
-	IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Auditoria' and xtype='U')
-	BEGIN
-		-- esta tabla guarda algunos datos de las propiedades que se toquen
-		CREATE TABLE Auditoria (
-			Id_auditoria INT NOT NULL IDENTITY,
-			Nombre_usuario NVARCHAR(100) NOT NULL,
-			Evento NVARCHAR(20) NOT NULL,
-			Fecha_evento DATETIME NOT NULL,
-			Id_propiedad INT,
-			Nombre_propiedad NVARCHAR(1000),
-			Noches_minimas INT,
-			Precio_por_noche FLOAT,
-			Latitud FLOAT,
-			Longitud FLOAT,
-			Id_usuario INT,
-			Tipo_de_propiedad NVARCHAR(100),
-			Localidad NVARCHAR(100),
-			CONSTRAINT PKAuditoria
-				PRIMARY KEY (Id_auditoria)
-		);
-	END
 
 	-- si la tabla deleted y la tabla inserted tienen algo adentro (o sea en un update)
 	IF (EXISTS (SELECT 1 FROM deleted) AND EXISTS (SELECT 1 FROM inserted))

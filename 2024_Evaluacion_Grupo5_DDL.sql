@@ -2,7 +2,12 @@
 8. p_CrearDB(borrar_si_existe?): Desarrollar un procedimiento almacenado que permita crear
 la base de datos con sus tablas, claves primarias, claves foráneas y todo lo relacionado al
 esquema de la base de datos. Según el parámetro enviado, se debe o no borrar la estructura
-si existía previamente.*/--CREATE DATABASE Airbnb;GOCREATE OR ALTER PROCEDURE p_CrearDB (@borrar_si_existe bit)
+si existía previamente.
+*/
+
+--CREATE DATABASE Airbnb;
+GO
+CREATE OR ALTER PROCEDURE p_CrearDB (@borrar_si_existe bit)
 AS
 BEGIN
 
@@ -221,13 +226,34 @@ BEGIN
 			REFERENCES Dormitorio (Id_propiedad, Numero)
 	);
 
+	CREATE TABLE Auditoria (
+			Id_auditoria INT NOT NULL IDENTITY,
+			Nombre_usuario NVARCHAR(100) NOT NULL,
+			Evento NVARCHAR(20) NOT NULL,
+			Fecha_evento DATETIME NOT NULL,
+			Id_propiedad INT,
+			Nombre_propiedad NVARCHAR(1000),
+			Noches_minimas INT,
+			Precio_por_noche FLOAT,
+			Latitud FLOAT,
+			Longitud FLOAT,
+			Id_usuario INT,
+			Tipo_de_propiedad NVARCHAR(100),
+			Localidad NVARCHAR(100),
+			CONSTRAINT PKAuditoria
+				PRIMARY KEY (Id_auditoria)
+		);
+
 END;
 
 --exec p_CrearDB @borrar_si_existe=1;
 
 /*
 9. p_LimpiarDatos(): Desarrollar un procedimiento almacenado que permita limpiar todos los
-datos almacenados en la base de datos, sin borrar estructuras.*/GOCREATE OR ALTER PROCEDURE p_LimpiarDatos
+datos almacenados en la base de datos, sin borrar estructuras.
+*/
+GO
+CREATE OR ALTER PROCEDURE p_LimpiarDatos
 AS
 BEGIN
 
@@ -256,7 +282,8 @@ dataset propuesto en cada caso. Se podrá contemplar la carga en una tabla tempo
 luego distribuir los datos en las distintas tablas. En el caso que el dataset tuviera datos
 incorrectos, no consistentes o faltantes, se podría implementar la estrategia de completarlo,
 corregirlo o suprimirlo. La carga se debe realizar desde el path del archivo enviado por
-parámetro.*/
+parámetro.
+*/
 GO
 CREATE PROCEDURE p_CargarDataset (@archivo NVARCHAR(100))
 AS
@@ -392,7 +419,8 @@ END;
 /*
 11. p_CargaAleatoria(): Desarrollar un procedimiento almacenado que permita cargar el juego
 de datos que se utilizarán para la generación de filas en cada una de las entidades
-diseñadas en el modelo. Se deben controlar los errores de carga.*/
+diseñadas en el modelo. Se deben controlar los errores de carga.
+*/
 -- GENERA USUARIOS QUE NO SON DUEÑOS DE PROPIEDADES
 
 DECLARE @cantidad INT = 100;
