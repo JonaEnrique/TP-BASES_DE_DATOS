@@ -46,35 +46,46 @@ BEGIN
 END
 	DROP TABLE #Usuarios_random
 
+---------------------------------------------------------
+GO
+DECLARE @cantidad INT = 100;
+CREATE TABLE #Usuarios_referentes (Id_usuario INT);
 
-CREATE TABLE #Usuarios_referentes (Id_usuarios INT)
-SET @cantidad=100;
-
-INSERT INTO #Usuarios_referentes (Id_usuarios)
-SELECT TOP (@cantidad/2) Id_usuario
+-- Insertar la mitad de los usuarios con referente en la tabla temporal
+INSERT INTO #Usuarios_referentes (Id_usuario)
+SELECT TOP (@cantidad / 2) Id_usuario
 FROM Usuario
+WHERE Id_usuario_referente IS NOT NULL
 ORDER BY NEWID();
 
-
-WHILE (@cantidad > 0)
+-- Actualizar los usuarios sin referente
+WHILE (@cantidad > 0 AND EXISTS (SELECT 1 FROM Usuario WHERE Id_usuario_referente IS NULL))
 BEGIN
-	UPDATE Usuario 
-	SET Id_usuario_referente = 'valor_deseado' -- Cambia 'valor_deseado' por el valor que deseas asignar
-	WHERE Usuario.Id_usuario = @cantidad AND Id_usuario_referente IS NULL ;
+    DECLARE @referenteId INT;
 
-	SET @cantidad -=1
-END
+    -- Seleccionar un Id_usuario aleatorio de la tabla temporal y guardarlo en @referenteId
+    SELECT TOP 1 @referenteId = Id_usuario FROM #Usuarios_referentes ORDER BY NEWID();
+
+    -- Actualizar un usuario sin referente asignándole el referente seleccionado
+    UPDATE TOP (1) Usuario
+    SET Id_usuario_referente = @referenteId
+    WHERE Id_usuario_referente IS NULL;
+
+    -- Eliminar el referente utilizado para no reutilizarlo
+    DELETE FROM #Usuarios_referentes WHERE Id_usuario = @referenteId;
+
+    SET @cantidad -= 1;
+END;
+
+-- Eliminar la tabla temporal
+DROP TABLE #Usuarios_referentes;
 
 
-
-DROP TABLE #Usuarios_referentes
-
-
-/*
 
 select *
 from Usuario
-where Id_usuario <=100
+where Id_usuario_referente is not null
+/*
 */
 
 --delete
