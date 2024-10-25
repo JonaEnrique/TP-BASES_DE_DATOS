@@ -1,10 +1,20 @@
 --BUSCA LAS PROPIEDADES DISPONIBLES DENTRO DE UN RADIO
---DROP PROCEDURE p_reporte4
-CREATE PROCEDURE p_reporte4
+
+CREATE OR ALTER PROCEDURE p_reporte4
     @IdPropiedad INT,  -- ID de la propiedad que servirá como punto central
     @Radio INT       -- Radio en metros
 AS
 BEGIN
+	IF (@Radio < 0) 
+	BEGIN 
+		PRINT 'Radio no puede ser negativo'
+		Return
+	END
+	IF (@IdPropiedad < 0) 
+	BEGIN 
+		PRINT 'Id de propiedad no puede ser negativo'
+		Return
+	END
     -- Declarar variables para almacenar la latitud y longitud de la propiedad
     DECLARE @LatitudCentro FLOAT;
     DECLARE @LongitudCentro FLOAT;
@@ -50,5 +60,5 @@ DECLARE @propiedad INT;
 SET @propiedad = (Select TOP 1 p.Id_propiedad from Propiedad p where p.Id_propiedad>5000 );
 
 EXEC p_reporte4
-    @IdPropiedad = @propiedad,  -- ID de la propiedad desde la cual calcular el radio
+    @IdPropiedad = -@propiedad,  -- ID de la propiedad desde la cual calcular el radio
     @Radio = 100;         -- Radio en metros

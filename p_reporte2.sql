@@ -2,14 +2,14 @@
 -- los servicios que se le pasan en una tabla de tipo LISTA_SERVICIO (Id_servicio)
 
 
-
-CREATE OR ALTER PROCEDURE p_reporte4 (@lista_servicio LISTA_SERVICIO READONLY)
+CREATE OR ALTER PROCEDURE p_reporte2 (@lista_servicio LISTA_SERVICIO READONLY)
 AS
 BEGIN
 	-- si la tabla que pase por parametro no esta vacia
 	IF (EXISTS (SELECT 1 FROM @lista_servicio))
 	BEGIN
-		
+
+
 		DECLARE @servicioActual INT;
 
 		-- tabla temporal para copiar la readonly
@@ -31,6 +31,11 @@ BEGIN
 			SELECT TOP 1 Id_servicio
 			FROM #Lista_servicio
 		);
+		IF (@servicioActual < 0) 
+		BEGIN 
+			PRINT 'Id de Servicio no puede ser negativo'
+			Return
+		END
 
 		-- y lo borro de la tabla
 		DELETE FROM #Lista_servicio
@@ -112,4 +117,4 @@ DECLARE @tabla LISTA_SERVICIO;
 INSERT INTO @tabla (Id_servicio) VALUES (1), (2), (3), (4), (5), (6), (7), (8), (9)
 
 -- lo ejecuta con la tabla que llenaste
-EXEC p_reporte4 @lista_servicio = @tabla;
+EXEC p_reporte2 @lista_servicio = @tabla;

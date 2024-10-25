@@ -1,7 +1,7 @@
 --Genera un reporte de que caracteristicas tiene cada propiedad
---DROP PROCEDURE p_reporte1
-CREATE PROCEDURE p_reporte1
-as 
+
+CREATE OR ALTER PROCEDURE p_reporte1
+AS
 BEGIN
 	WITH
 	Propiedad_espacio AS (

@@ -1,13 +1,18 @@
 --Reporte 3 --BUSCA HABITACIONES DIPONIBLES, le paso las fechas que necesito, y la cantidad de lugares
 --fecha inicio, fecha fin y lugares necesarios
 
---DROP PROCEDURE p_reporte3
-CREATE PROCEDURE p_reporte3
+
+CREATE OR ALTER PROCEDURE p_reporte3
     @FechaInicio DATE,
     @FechaFin DATE,
     @lugares INT
 AS
 BEGIN
+	IF (@lugares < 0) 
+	BEGIN 
+		PRINT 'Id de Propiedad no puede ser negativo'
+		Return
+	END
   -- Tabla temporal para almacenar resultados de p_reporte1
     CREATE TABLE #Reporte  (Id_propiedad INT,Nombre NVARCHAR(255),Banios INT,Dormitorios INT,Camas INT,Espacio INT);
 
@@ -30,7 +35,7 @@ BEGIN
     DROP TABLE #Reporte;
 END;
 
-exec p_reporte3 '2024-10-01', '2024-10-05', 7;
+exec p_reporte3 '2024-10-01', '2024-10-05', -2;
 
 select *
 from Reserva

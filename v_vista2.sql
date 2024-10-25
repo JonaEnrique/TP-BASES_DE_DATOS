@@ -13,7 +13,7 @@ WITH ReferentesCTE AS (
     INNER JOIN ReferentesCTE rc ON u.Id_usuario = rc.Id_usuario_referente
 )
 
--- Contamos el número de ancestros para cada usuario
+-- Contamos el nï¿½mero de ancestros para cada usuario
 SELECT Id_usuario, MAX(Nivel) AS CantidadAncestros
 FROM ReferentesCTE
 GROUP BY Id_usuario
