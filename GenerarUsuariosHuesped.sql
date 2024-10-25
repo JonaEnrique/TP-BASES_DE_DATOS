@@ -46,9 +46,12 @@ BEGIN
 END
 	DROP TABLE #Usuarios_random
 
---delete
---from Usuario
---where Id_usuario <=100
+/*
+
+select *
+from Usuario
+where Id_usuario <=100
+*/
 
 --delete
 --from Reserva
