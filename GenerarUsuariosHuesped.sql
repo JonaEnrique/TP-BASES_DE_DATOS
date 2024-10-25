@@ -46,6 +46,30 @@ BEGIN
 END
 	DROP TABLE #Usuarios_random
 
+
+CREATE TABLE #Usuarios_referentes (Id_usuarios INT)
+SET @cantidad=100;
+
+INSERT INTO #Usuarios_referentes (Id_usuarios)
+SELECT TOP (@cantidad/2) Id_usuario
+FROM Usuario
+ORDER BY NEWID();
+
+
+WHILE (@cantidad > 0)
+BEGIN
+	UPDATE Usuario 
+	SET Id_usuario_referente = 'valor_deseado' -- Cambia 'valor_deseado' por el valor que deseas asignar
+	WHERE Usuario.Id_usuario = @cantidad AND Id_usuario_referente IS NULL ;
+
+	SET @cantidad -=1
+END
+
+
+
+DROP TABLE #Usuarios_referentes
+
+
 /*
 
 select *
