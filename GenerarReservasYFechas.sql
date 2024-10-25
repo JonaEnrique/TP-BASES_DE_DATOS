@@ -2,6 +2,8 @@
 -- si lo quieren correr de nuevo hagan DELETE de Fecha_reservada y Reserva
 -- esto es para resetear el identity de Reserva
 -- DBCC CHECKIDENT (Reserva, RESEED, 0)
+delete from Fecha_reservada
+delete from Reserva
 
 DECLARE @cantidadFechas INT;
 DECLARE @cantidadPropiedades INT = 20;
@@ -95,4 +97,7 @@ DROP TABLE #Propiedades_random;
 SELECT Id_propiedad, COUNT(*) AS CantidadReservas
 FROM Reserva
 GROUP BY Id_propiedad;
-
+/*
+delete from Fecha_reservada
+delete from Reserva
+*/ 
