@@ -1,5 +1,3 @@
---Reseña(Id_reseña, Comentario, Calificación, Fecha_creada, Id_propiedad, Id_usuario)
-
 CREATE TABLE #Propiedades_random (Id_propiedad INT);
 CREATE TABLE #Usuarios_random (Id_usuario INT);
 
@@ -10,7 +8,6 @@ DECLARE @fechaCreada DATE;
 DECLARE @idPropiedad INT;
 DECLARE @idUsuario INT;
 
----------------------------------------------------
 INSERT INTO #Propiedades_random (Id_propiedad)
 SELECT TOP (@cantidadResenias) Id_propiedad
 FROM Propiedad
@@ -21,12 +18,7 @@ SELECT TOP (@cantidadResenias) Id_usuario
 FROM Usuario
 ORDER BY NEWID();
 
-SELECT *
-FROM #Propiedades_random
 
-SELECT *
-FROM #Usuarios_random
----------------------------------------------------
 GO
 
 DECLARE @cantidadResenias INT = 20;
@@ -68,6 +60,3 @@ END
 
 DROP TABLE #Propiedades_random;
 DROP TABLE #Usuarios_random;
-
-SELECT *
-FROM Resenia
